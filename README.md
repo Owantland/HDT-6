@@ -1,45 +1,8 @@
-HDT-6
-=======================
-Driver Asignador.java
-========================
-import java.util.Scanner;
-public class DriverAsignador
-{
-	public static void main(String[] args)
-	{
-		Scanner input = new Scanner (System.in);
-		System.out.println("Cuantas personas desea ingresar \n");
-		String decision1 = input.next();
-		int tamanio = Integer.parseInt(decision1);
-		System.out.println("Que tipo de Set desea usar? \n");
-		System.out.println("1. Hash \n");
-		System.out.println("2. Tree \n");
-		System.out.println("3.LinkedHash \n");
-		String decision = input.next();
-		Asignador Asignador = new Asignador(decision, tamanio);
-		Asignador.asignar();
-		Asignador.TripleInterseccion();
-		String listatxt = Asignador.tripleString();
-		System.out.println("Desarolladores de los tres tipos " + listatxt);
-		Asignador.javaNotWeb();
-		String listatxt2 = Asignador.notWeb();
-		System.out.println("Desarolladores de Java pero no de Web " + listatxt2);
-		Asignador.webCellnotjava();
-		String listatxt3 = Asignador.celWebntJava();
-		System.out.println("Desarolladores de web y celulares pero no de Java " + listatxt3);
-		Asignador.webOrCelNtJava();
-		String listatxt4 = Asignador.webNtJava();
-		System.out.println("Desarolladores de Web o celulares pero no de Java " + listatxt4);
-		Asignador.javaSubconjunto();
-		String listatxt5 = Asignador.subconjuntoJavaWeb();
-		System.out.println("Desarolladores de Java son un subconjunto de Web" + listatxt5);
-	}
-}
+HDT #6
+=========
+Asignador
+=========
 
-
-===============
-Asignador.java
-===============
 //****************************************************************
 // Autores: Otto Wantland Carne: 13663 Diego Rodriguez Carne: 13111
 // Seccion: 20
@@ -59,6 +22,7 @@ public class Asignador
 	private int contador, size, size2, size3, size4, size5;
 	private String lista[], triple[], javaNotWeb[], webCelnotJava[], weborCel[];
 	private Set<String> DesarolladoresJava, DesarolladoresWeb, DesarolladoresCel;
+	
 	//Constructor
 	public Asignador (String opcion1, int tamanio)
 	{
@@ -75,6 +39,7 @@ public class Asignador
 		contador = 0;
 	}
 	
+	//Metodo encargado de quitar los valores null de las listas creadas
 	public void clearNull(String[] lista)
 	{
 		int taman = lista.length - 1;
@@ -93,12 +58,14 @@ public class Asignador
 		}
 	}
 	
+	//Permite agregar un nuevo nombre a la lista de nombre usada por las funciones
 	public void agregarNombre(String nombre)
 	{
 		lista[contador] = nombre;
 		contador++;
 	}
 	
+	//Permite volver la lista de nombres un String
 	public String toString()
 	{
 		String resultado = "";
@@ -106,7 +73,7 @@ public class Asignador
 			resultado+= elemento;
 		return resultado;
 	}
-	
+	//Permite volver la lista triple un String
 	public String tripleString()
 	{
 		String resultado = "";
@@ -114,7 +81,7 @@ public class Asignador
 			resultado = resultado + " 	" + elemento;
 		return resultado;
 	}
-	
+	//Permite volver la lista javaNotWeb un String
 	public String notWeb()
 	{
 		String resultado = "";
@@ -123,6 +90,7 @@ public class Asignador
 		return resultado;
 	}
 	
+	//Permite volver la lista webCelnotJava un String
 	public String celWebntJava()
 	{
 		String resultado = "";
@@ -131,6 +99,7 @@ public class Asignador
 		return resultado;
 	}
 	
+	//Permite volver la lista weborCel un String
 	public String webNtJava()
 	{
 		String resultado = "";
@@ -139,6 +108,7 @@ public class Asignador
 		return resultado;
 	}
 	
+	//Imprime la respuesta a la pregunta sobre el subconjunto
 	public String subconjuntoJavaWeb()
 	{
 		String resultado = " ";
@@ -153,6 +123,7 @@ public class Asignador
 		return resultado;
 	}
 	
+	//Crea una lista de los desarolladores de Web o de Celular pero no de Java
 	public void webOrCelNtJava()
 	{
 		weborCel = new String[size5];
@@ -184,6 +155,7 @@ public class Asignador
 		clearNull(weborCel);
 	}
 	
+	//Analiza si los desarolladores de Java son un subconjunto de los desarolladores Web
 	public void javaSubconjunto()
 	{
 		int counter2 = 0;
@@ -214,6 +186,7 @@ public class Asignador
 
 	}
 	
+	//Crea una lista con los desrolladores de las tres cosas a la vez
 	public void TripleInterseccion()
 	{
 		triple = new String[size2];
@@ -252,6 +225,7 @@ public class Asignador
 		clearNull(triple);
 	}
 	
+	//Crea una lista de los desarolladores de java pero no de Web
 	public void javaNotWeb()
 	{
 		javaNotWeb = new String[size3];
@@ -282,6 +256,7 @@ public class Asignador
 		clearNull(javaNotWeb);
 	}
 	
+	//Crea una lista de los desarolladores de web y celular pero no Java
 	public void webCellnotjava()
 	{
 		webCelnotJava = new String[size4];
@@ -320,6 +295,7 @@ public class Asignador
 		clearNull(webCelnotJava);
 	}
 	
+	//Se encarga de instanciar los datos sobre los desarolladores
 	public void asignar()
 	{
 		//Pre: Obtiene la opcion del factory y decide en que lista guardar los datos
@@ -367,15 +343,18 @@ public class Asignador
             	continuar = true;
             }
 		}
+		//Permite ver que valores hay en cada Set
 		System.out.println("Desarolladores de Java" + DesarolladoresJava);
 		System.out.println("Desarolladores de Web" + DesarolladoresWeb);
 		System.out.println("Desarolladores de Celular" + DesarolladoresCel);
 	}
 }
 
-===============
-SetFactory.java
-===============
+
+===========
+SetFactory
+==========
+
 //****************************************************************
 // Autores: Otto Wantland Carne: 13663 Diego Rodriguez Carne: 13111
 // Seccion: 20
@@ -386,6 +365,7 @@ SetFactory.java
 //*****************************************************************
 import java.util.*; //Utiliza JCF para llamar a los Sets
 
+//Factory que se ocupa de decidir que tipo de set utilizar
 class SetFactory <E>
 {
 	public Set<E> getSet(String entry)
@@ -402,5 +382,54 @@ class SetFactory <E>
 		{
 			return new LinkedHashSet<E>(); //Regresa un set de tipo LinkedHash
 		}
+	}
+}
+
+====================
+DriverAsignador.java
+====================
+
+//****************************************************************
+// Autores: Otto Wantland Carne: 13663 Diego Rodriguez Carne: 13111
+// Seccion: 20
+//Fecha 28/8/14
+// Nombre de Archivo: DriverAsignador.java
+// Breve Descripcion: programa principal que trabaja con el asignador.
+//*****************************************************************
+import java.util.Scanner;
+public class DriverAsignador
+{
+	public static void main(String[] args)
+	{
+		//Obtiene los datos necesarios para las operaciones como el 
+		//numero de personas a ingresar
+		Scanner input = new Scanner (System.in);
+		System.out.println("Cuantas personas desea ingresar \n");
+		String decision1 = input.next();
+		int tamanio = Integer.parseInt(decision1);
+		System.out.println("Que tipo de Set desea usar? \n"); //instancia el tipo de set que se desea usar
+		System.out.println("1. Hash \n");
+		System.out.println("2. Tree \n");
+		System.out.println("3.LinkedHash \n");
+		String decision = input.next();
+		
+		//Area que se encarga de utilizar los metodos e imprimir los datos esperados
+		Asignador Asignador = new Asignador(decision, tamanio);
+		Asignador.asignar();
+		Asignador.TripleInterseccion();
+		String listatxt = Asignador.tripleString();
+		System.out.println("Desarolladores de los tres tipos " + listatxt);
+		Asignador.javaNotWeb();
+		String listatxt2 = Asignador.notWeb();
+		System.out.println("Desarolladores de Java pero no de Web " + listatxt2);
+		Asignador.webCellnotjava();
+		String listatxt3 = Asignador.celWebntJava();
+		System.out.println("Desarolladores de web y celulares pero no de Java " + listatxt3);
+		Asignador.webOrCelNtJava();
+		String listatxt4 = Asignador.webNtJava();
+		System.out.println("Desarolladores de Web o celulares pero no de Java " + listatxt4);
+		Asignador.javaSubconjunto();
+		String listatxt5 = Asignador.subconjuntoJavaWeb();
+		System.out.println("Desarolladores de Java son un subconjunto de Web" + listatxt5);
 	}
 }
